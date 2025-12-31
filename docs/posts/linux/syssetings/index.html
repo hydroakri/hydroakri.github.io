@@ -1,0 +1,474 @@
+<!DOCTYPE html>
+<html lang="en" dir="auto">
+
+<head><meta charset="utf-8">
+<meta http-equiv="X-UA-Compatible" content="IE=edge">
+<meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
+<meta name="robots" content="index, follow">
+<title>Linux 优化 | Hydroakri&#39;s Blog</title>
+<meta name="keywords" content="linux" />
+<meta name="description" content="
+use ssh
+
+git config --global url.ssh://git@github.com/.insteadOf https://github.com/
+
+Useful utils
+earlyoom adguardhome warp-svc systemd-resolved gamemode ufw apparmor proxychains
+
+sudo systemctl daemon-reload
+sudo systemctl enable fstrim.timer
+sudo systemctl enable systemd-zram-setup@zram0.service
+sudo systemctl enable nvidia-suspend.service
+sudo systemctl enable systemd-resolved.service
+
+/etc/default/grub
+
+GRUB_CMDLINE_LINUX_DEFAULT=&#34;zswap.enabled=0 radeon.dpm=1 amd_pstate=active processor.ignore_ppc=1 nvidia_drm.modeset=1 nvidia_drm.fbdev=1 mem_sleep_default=s2idle nowatchdog nmi_watchdog=0 snd_hda_intel.power_save=1 iwlwifi.power_save=1 usbcore.autosuspend=60 mitigations=auto apparmor=1 security=apparmor lockdown=integrity quiet splash&#34;
+">
+<meta name="author" content="">
+<link rel="canonical" href="https://hydroakri.github.io/posts/linux/syssetings/" />
+<link crossorigin="anonymous" href="https://hydroakri.github.io/assets/css/stylesheet.min.c88963fe2d79462000fd0fb1b3737783c32855d340583e4523343f8735c787f0.css" integrity="sha256-yIlj/i15RiAA/Q&#43;xs3N3g8MoVdNAWD5FIzQ/hzXHh/A=" rel="preload stylesheet" as="style">
+<script defer crossorigin="anonymous" src="https://hydroakri.github.io/assets/js/highlight.min.2eadbb982468c11a433a3e291f01326f2ba43f065e256bf792dbd79640a92316.js" integrity="sha256-Lq27mCRowRpDOj4pHwEybyukPwZeJWv3ktvXlkCpIxY="
+    onload="hljs.initHighlightingOnLoad();"></script>
+<link rel="icon" href="https://hydroakri.github.io/favicon.ico">
+<link rel="icon" type="image/png" sizes="16x16" href="https://hydroakri.github.io/favicon-16x16.png">
+<link rel="icon" type="image/png" sizes="32x32" href="https://hydroakri.github.io/favicon-32x32.png">
+<link rel="apple-touch-icon" href="https://hydroakri.github.io/apple-touch-icon.png">
+<link rel="mask-icon" href="https://hydroakri.github.io/safari-pinned-tab.svg">
+<meta name="theme-color" content="#2e2e33">
+<meta name="msapplication-TileColor" content="#2e2e33">
+<meta name="generator" content="Hugo 0.134.0">
+<link rel="alternate" hreflang="en" href="https://hydroakri.github.io/posts/linux/syssetings/" />
+<noscript>
+    <style>
+        #theme-toggle,
+        .top-link {
+            display: none;
+        }
+
+    </style>
+    <style>
+        @media (prefers-color-scheme: dark) {
+            :root {
+                --theme: rgb(29, 30, 32);
+                --entry: rgb(46, 46, 51);
+                --primary: rgb(218, 218, 219);
+                --secondary: rgb(155, 156, 157);
+                --tertiary: rgb(65, 66, 68);
+                --content: rgb(196, 196, 197);
+                --hljs-bg: rgb(46, 46, 51);
+                --code-bg: rgb(55, 56, 62);
+                --border: rgb(51, 51, 51);
+            }
+
+            .list {
+                background: var(--theme);
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-track {
+                background: 0 0;
+            }
+
+            .list:not(.dark)::-webkit-scrollbar-thumb {
+                border-color: var(--theme);
+            }
+        }
+
+    </style>
+</noscript><meta property="og:title" content="Linux 优化" />
+<meta property="og:description" content="
+use ssh
+
+git config --global url.ssh://git@github.com/.insteadOf https://github.com/
+
+Useful utils
+earlyoom adguardhome warp-svc systemd-resolved gamemode ufw apparmor proxychains
+
+sudo systemctl daemon-reload
+sudo systemctl enable fstrim.timer
+sudo systemctl enable systemd-zram-setup@zram0.service
+sudo systemctl enable nvidia-suspend.service
+sudo systemctl enable systemd-resolved.service
+
+/etc/default/grub
+
+GRUB_CMDLINE_LINUX_DEFAULT=&#34;zswap.enabled=0 radeon.dpm=1 amd_pstate=active processor.ignore_ppc=1 nvidia_drm.modeset=1 nvidia_drm.fbdev=1 mem_sleep_default=s2idle nowatchdog nmi_watchdog=0 snd_hda_intel.power_save=1 iwlwifi.power_save=1 usbcore.autosuspend=60 mitigations=auto apparmor=1 security=apparmor lockdown=integrity quiet splash&#34;
+" />
+<meta property="og:type" content="article" />
+<meta property="og:url" content="https://hydroakri.github.io/posts/linux/syssetings/" /><meta property="article:section" content="posts" />
+<meta property="article:published_time" content="2024-09-03T13:25:27&#43;08:00" />
+<meta property="article:modified_time" content="2024-09-03T13:25:27&#43;08:00" />
+
+<meta name="twitter:card" content="summary"/>
+<meta name="twitter:title" content="Linux 优化"/>
+<meta name="twitter:description" content="
+use ssh
+
+git config --global url.ssh://git@github.com/.insteadOf https://github.com/
+
+Useful utils
+earlyoom adguardhome warp-svc systemd-resolved gamemode ufw apparmor proxychains
+
+sudo systemctl daemon-reload
+sudo systemctl enable fstrim.timer
+sudo systemctl enable systemd-zram-setup@zram0.service
+sudo systemctl enable nvidia-suspend.service
+sudo systemctl enable systemd-resolved.service
+
+/etc/default/grub
+
+GRUB_CMDLINE_LINUX_DEFAULT=&#34;zswap.enabled=0 radeon.dpm=1 amd_pstate=active processor.ignore_ppc=1 nvidia_drm.modeset=1 nvidia_drm.fbdev=1 mem_sleep_default=s2idle nowatchdog nmi_watchdog=0 snd_hda_intel.power_save=1 iwlwifi.power_save=1 usbcore.autosuspend=60 mitigations=auto apparmor=1 security=apparmor lockdown=integrity quiet splash&#34;
+"/>
+
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BreadcrumbList",
+  "itemListElement": [
+    {
+      "@type": "ListItem",
+      "position":  1 ,
+      "name": "Posts",
+      "item": "https://hydroakri.github.io/posts/"
+    }, 
+    {
+      "@type": "ListItem",
+      "position":  2 ,
+      "name": "Linux 优化",
+      "item": "https://hydroakri.github.io/posts/linux/syssetings/"
+    }
+  ]
+}
+</script>
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "BlogPosting",
+  "headline": "Linux 优化",
+  "name": "Linux 优化",
+  "description": " use ssh\ngit config --global url.ssh://git@github.com/.insteadOf https://github.com/ Useful utils earlyoom adguardhome warp-svc systemd-resolved gamemode ufw apparmor proxychains\nsudo systemctl daemon-reload sudo systemctl enable fstrim.timer sudo systemctl enable systemd-zram-setup@zram0.service sudo systemctl enable nvidia-suspend.service sudo systemctl enable systemd-resolved.service /etc/default/grub\nGRUB_CMDLINE_LINUX_DEFAULT=\u0026#34;zswap.enabled=0 radeon.dpm=1 amd_pstate=active processor.ignore_ppc=1 nvidia_drm.modeset=1 nvidia_drm.fbdev=1 mem_sleep_default=s2idle nowatchdog nmi_watchdog=0 snd_hda_intel.power_save=1 iwlwifi.power_save=1 usbcore.autosuspend=60 mitigations=auto apparmor=1 security=apparmor lockdown=integrity quiet splash\u0026#34; ",
+  "keywords": [
+    "linux"
+  ],
+  "articleBody": " use ssh\ngit config --global url.ssh://git@github.com/.insteadOf https://github.com/ Useful utils earlyoom adguardhome warp-svc systemd-resolved gamemode ufw apparmor proxychains\nsudo systemctl daemon-reload sudo systemctl enable fstrim.timer sudo systemctl enable systemd-zram-setup@zram0.service sudo systemctl enable nvidia-suspend.service sudo systemctl enable systemd-resolved.service /etc/default/grub\nGRUB_CMDLINE_LINUX_DEFAULT=\"zswap.enabled=0 radeon.dpm=1 amd_pstate=active processor.ignore_ppc=1 nvidia_drm.modeset=1 nvidia_drm.fbdev=1 mem_sleep_default=s2idle nowatchdog nmi_watchdog=0 snd_hda_intel.power_save=1 iwlwifi.power_save=1 usbcore.autosuspend=60 mitigations=auto apparmor=1 security=apparmor lockdown=integrity quiet splash\" /etc/modprobe.d/nvidia-options.conf\noptions nvidia-drm modeset=1 options nvidia NVreg_PreserveVideoMemoryAllocations=1 /etc/systemd/zram-generator.conf\n[zram0] zram-size = ram/2 compression-algorithm = zstd /etc/systemd/resolved.conf\n[Resolve] DNS=123.129.227.3#doh.apad.pro 103.2.57.5#ipublic.dns.iij.jp 101.102.103.104#101.101.101.101 1.1.1.1#cloudflare-dns.com 8.8.8.8#dns.google 9.9.9.9#dns.quad9.net Domains=~ DNSSEC=allow-downgrade DNSOverTLS=yes MulticastDNS=yes LLMNR=yes Cache=yes /etc/sysctl.conf\n#security kernel.core_pattern=|/bin/false kernel.unprivileged_bpf_disabled=0 kernel.kptr_restrict=2 kernel.yama.ptrace_scope=3 kernel.kexec_load_disabled=1 module.sig_enforce=1 net.core.bpf_jit_harden=2 # performance net.core.default_qdisc=cake net.ipv4.tcp_congestion_control=bbr2 net.core.netdev_max_backlog = 16384 net.core.rmem_default = 1048576 net.core.rmem_max = 16777216 net.core.wmem_default = 1048576 net.core.wmem_max = 16777216 net.core.optmem_max = 65536 net.ipv4.tcp_rmem = 4096 1048576 2097152 net.ipv4.tcp_wmem = 4096 65536 16777216 net.ipv4.udp_rmem_min = 8192 net.ipv4.udp_wmem_min = 8192 net.ipv4.tcp_fastopen = 3 net.ipv4.tcp_max_syn_backlog = 8192 net.ipv4.tcp_max_tw_buckets = 2000000 net.ipv4.tcp_tw_reuse = 1 net.ipv4.tcp_fin_timeout = 10 net.ipv4.tcp_slow_start_after_idle = 0 net.ipv4.tcp_keepalive_time = 60 net.ipv4.tcp_keepalive_intvl = 10 net.ipv4.tcp_keepalive_probes = 6 net.ipv4.tcp_mtu_probing = 1 net.ipv4.tcp_sack = 1 vm.swappiness=180 vm.watermark_boost_factor=0 vm.watermark_scale_factor=125 vm.page-cluster=0 vm.dirty_ratio=8 vm.dirty_background_ratio=4 vm.dirty_writeback_centisecs=1500 vm.dirty_expire_centisecs=1500 vm.laptop_mode=5 vm.vfs_cache_pressure = 50 /etc/modules-load.d/tcp_bbr.conf\ntcp_bbr2 zram /etc/fstab\nntfs3 uid=1000,gid=1000,rw,user,exec,umask=000,prealloc btrfs rw,relatime,ssd,space_cache=v2,noatime,commit=120,compress=zstd,discard=async /etc/udev/rules.d/powersave.rules\nSUBSYSTEM==\"pci\", ATTR{power/control}=\"auto\" # 上述规则会关闭所有未使用的设备，但某些设备不会再次唤醒。要仅对已知可以工作的设备进行运行时电源管理，请使用对应供应商和设备ID的简单匹配（使用 lspci -nn 获取这些值) ACTION==\"add\", SUBSYSTEM==\"net\", KERNEL==\"wl*\", RUN+=\"/usr/bin/iw dev $name set power_save on\" # disable Wake-on-LAN /etc/udev/rules.d/ntfs3_by_default.rules\nSUBSYSTEM==\"block\", ENV{ID_FS_TYPE}==\"ntfs\", ENV{ID_FS_TYPE}=\"ntfs3\" /etc/environment\nXMODIFIERS=@im=fcitx /etc/NetworkManager/conf.d/dns.conf\n[main] dns=none kernel modules\namdgpu nvidia nvidia_modeset nvidia_uvm nvidia_drm distro specific #local-mirror deb http://mirrors.ustc.edu.cn/debian trixie main contrib non-free non-free-firmware deb http://mirrors.ustc.edu.cn/debian trixie-updates main contrib non-free non-free-firmware #main-source/updates/backports deb https://deb.debian.org/debian/ trixie main contrib non-free non-free-firmware deb https://deb.debian.org/debian/ trixie-updates main contrib non-free non-free-firmware deb https://deb.debian.org/debian/ trixie-backports main contrib non-free non-free-firmware #security deb http://deb.debian.org/debian-security/ trixie-security main contrib non-free non-free-firmware Another important thing pacman -Qqe \u003e pkgs.txt flatpak list --columns=app \u003e flatpak.txt sudo apt list \u003e debs.txt brew list \u003e brew.txt ",
+  "wordCount" : "290",
+  "inLanguage": "en",
+  "datePublished": "2024-09-03T13:25:27+08:00",
+  "dateModified": "2024-09-03T13:25:27+08:00",
+  "mainEntityOfPage": {
+    "@type": "WebPage",
+    "@id": "https://hydroakri.github.io/posts/linux/syssetings/"
+  },
+  "publisher": {
+    "@type": "Organization",
+    "name": "Hydroakri's Blog",
+    "logo": {
+      "@type": "ImageObject",
+      "url": "https://hydroakri.github.io/favicon.ico"
+    }
+  }
+}
+</script>
+</head>
+
+<body class="" id="top">
+<script>
+    if (localStorage.getItem("pref-theme") === "dark") {
+        document.body.classList.add('dark');
+    } else if (localStorage.getItem("pref-theme") === "light") {
+        document.body.classList.remove('dark')
+    } else if (window.matchMedia('(prefers-color-scheme: dark)').matches) {
+        document.body.classList.add('dark');
+    }
+
+</script>
+
+<header class="header">
+    <nav class="nav">
+        <div class="logo">
+            <a href="https://hydroakri.github.io/" accesskey="h" title="Hydroakri&#39;s Blog (Alt + H)">Hydroakri&#39;s Blog</a>
+            <span class="logo-switches">
+                <button id="theme-toggle" accesskey="t" title="(Alt + T)">
+                    <svg id="moon" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <path d="M21 12.79A9 9 0 1 1 11.21 3 7 7 0 0 0 21 12.79z"></path>
+                    </svg>
+                    <svg id="sun" xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24"
+                        fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round"
+                        stroke-linejoin="round">
+                        <circle cx="12" cy="12" r="5"></circle>
+                        <line x1="12" y1="1" x2="12" y2="3"></line>
+                        <line x1="12" y1="21" x2="12" y2="23"></line>
+                        <line x1="4.22" y1="4.22" x2="5.64" y2="5.64"></line>
+                        <line x1="18.36" y1="18.36" x2="19.78" y2="19.78"></line>
+                        <line x1="1" y1="12" x2="3" y2="12"></line>
+                        <line x1="21" y1="12" x2="23" y2="12"></line>
+                        <line x1="4.22" y1="19.78" x2="5.64" y2="18.36"></line>
+                        <line x1="18.36" y1="5.64" x2="19.78" y2="4.22"></line>
+                    </svg>
+                </button>
+                <ul class="lang-switch"><li>|</li>
+                </ul>
+            </span>
+        </div>
+        <ul id="menu">
+            <li>
+                <a href="https://hydroakri.github.io/about" title="About">
+                    <span>About</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hydroakri.github.io/archives" title="Archives">
+                    <span>Archives</span>
+                </a>
+            </li>
+            <li>
+                <a href="https://hydroakri.github.io/tags/" title="Tags">
+                    <span>Tags</span>
+                </a>
+            </li>
+        </ul>
+    </nav>
+</header>
+<main class="main">
+
+<article class="post-single">
+  <header class="post-header">
+    
+    <h1 class="post-title">
+      Linux 优化
+    </h1>
+    <div class="post-meta">&lt;span title=&#39;2024-09-03 13:25:27 &#43;0800 &#43;0800&#39;&gt;September 3, 2024&lt;/span&gt;
+
+</div>
+  </header> 
+  <div class="post-content"><blockquote>
+<p>use ssh</p>
+</blockquote>
+<pre tabindex="0"><code>git config --global url.ssh://git@github.com/.insteadOf https://github.com/
+</code></pre><blockquote>
+<p>Useful utils
+<code>earlyoom</code> <code>adguardhome</code> <code>warp-svc</code> <code>systemd-resolved</code> <code>gamemode</code> <code>ufw</code> <code>apparmor</code> <code>proxychains</code></p>
+</blockquote>
+<pre tabindex="0"><code>sudo systemctl daemon-reload
+sudo systemctl enable fstrim.timer
+sudo systemctl enable systemd-zram-setup@zram0.service
+sudo systemctl enable nvidia-suspend.service
+sudo systemctl enable systemd-resolved.service
+</code></pre><blockquote>
+<p>/etc/default/grub</p>
+</blockquote>
+<pre tabindex="0"><code class="language-conf" data-lang="conf">GRUB_CMDLINE_LINUX_DEFAULT=&#34;zswap.enabled=0 radeon.dpm=1 amd_pstate=active processor.ignore_ppc=1 nvidia_drm.modeset=1 nvidia_drm.fbdev=1 mem_sleep_default=s2idle nowatchdog nmi_watchdog=0 snd_hda_intel.power_save=1 iwlwifi.power_save=1 usbcore.autosuspend=60 mitigations=auto apparmor=1 security=apparmor lockdown=integrity quiet splash&#34;
+</code></pre><blockquote>
+<p>/etc/modprobe.d/nvidia-options.conf</p>
+</blockquote>
+<pre tabindex="0"><code>options nvidia-drm modeset=1
+options nvidia NVreg_PreserveVideoMemoryAllocations=1
+</code></pre><blockquote>
+<p>/etc/systemd/zram-generator.conf</p>
+</blockquote>
+<pre tabindex="0"><code>[zram0]
+zram-size = ram/2
+compression-algorithm = zstd
+</code></pre><blockquote>
+<p>/etc/systemd/resolved.conf</p>
+</blockquote>
+<pre tabindex="0"><code>[Resolve]
+DNS=123.129.227.3#doh.apad.pro 103.2.57.5#ipublic.dns.iij.jp 101.102.103.104#101.101.101.101 1.1.1.1#cloudflare-dns.com 8.8.8.8#dns.google 9.9.9.9#dns.quad9.net
+Domains=~
+DNSSEC=allow-downgrade
+DNSOverTLS=yes
+MulticastDNS=yes
+LLMNR=yes
+Cache=yes
+</code></pre><blockquote>
+<p>/etc/sysctl.conf</p>
+</blockquote>
+<pre tabindex="0"><code class="language-conf" data-lang="conf">#security
+kernel.core_pattern=|/bin/false
+kernel.unprivileged_bpf_disabled=0
+kernel.kptr_restrict=2
+kernel.yama.ptrace_scope=3
+kernel.kexec_load_disabled=1
+module.sig_enforce=1
+net.core.bpf_jit_harden=2
+
+# performance
+net.core.default_qdisc=cake
+net.ipv4.tcp_congestion_control=bbr2
+
+net.core.netdev_max_backlog = 16384
+net.core.rmem_default = 1048576
+net.core.rmem_max = 16777216
+net.core.wmem_default = 1048576
+net.core.wmem_max = 16777216
+net.core.optmem_max = 65536
+net.ipv4.tcp_rmem = 4096 1048576 2097152
+net.ipv4.tcp_wmem = 4096 65536 16777216
+net.ipv4.udp_rmem_min = 8192
+net.ipv4.udp_wmem_min = 8192
+net.ipv4.tcp_fastopen = 3
+net.ipv4.tcp_max_syn_backlog = 8192
+net.ipv4.tcp_max_tw_buckets = 2000000
+net.ipv4.tcp_tw_reuse = 1
+net.ipv4.tcp_fin_timeout = 10
+net.ipv4.tcp_slow_start_after_idle = 0
+net.ipv4.tcp_keepalive_time = 60
+net.ipv4.tcp_keepalive_intvl = 10
+net.ipv4.tcp_keepalive_probes = 6
+net.ipv4.tcp_mtu_probing = 1
+net.ipv4.tcp_sack = 1
+
+vm.swappiness=180
+vm.watermark_boost_factor=0
+vm.watermark_scale_factor=125
+vm.page-cluster=0
+
+vm.dirty_ratio=8
+vm.dirty_background_ratio=4
+vm.dirty_writeback_centisecs=1500
+vm.dirty_expire_centisecs=1500
+vm.laptop_mode=5
+vm.vfs_cache_pressure = 50
+</code></pre><blockquote>
+<p>/etc/modules-load.d/tcp_bbr.conf</p>
+</blockquote>
+<pre tabindex="0"><code class="language-conf" data-lang="conf">tcp_bbr2
+zram
+</code></pre><blockquote>
+<p>/etc/fstab</p>
+</blockquote>
+<pre tabindex="0"><code>&lt;type&gt;  &lt;options&gt;
+ntfs3 uid=1000,gid=1000,rw,user,exec,umask=000,prealloc
+btrfs rw,relatime,ssd,space_cache=v2,noatime,commit=120,compress=zstd,discard=async
+</code></pre><blockquote>
+<p>/etc/udev/rules.d/powersave.rules</p>
+</blockquote>
+<pre tabindex="0"><code>SUBSYSTEM==&#34;pci&#34;, ATTR{power/control}=&#34;auto&#34;
+# 上述规则会关闭所有未使用的设备，但某些设备不会再次唤醒。要仅对已知可以工作的设备进行运行时电源管理，请使用对应供应商和设备ID的简单匹配（使用 lspci -nn 获取这些值)
+
+ACTION==&#34;add&#34;, SUBSYSTEM==&#34;net&#34;, KERNEL==&#34;wl*&#34;, RUN+=&#34;/usr/bin/iw dev $name set power_save on&#34;
+# disable Wake-on-LAN
+</code></pre><blockquote>
+<p>/etc/udev/rules.d/ntfs3_by_default.rules</p>
+</blockquote>
+<pre tabindex="0"><code>SUBSYSTEM==&#34;block&#34;, ENV{ID_FS_TYPE}==&#34;ntfs&#34;, ENV{ID_FS_TYPE}=&#34;ntfs3&#34;
+</code></pre><blockquote>
+<p>/etc/environment</p>
+</blockquote>
+<pre tabindex="0"><code>XMODIFIERS=@im=fcitx
+</code></pre><blockquote>
+<p>/etc/NetworkManager/conf.d/dns.conf</p>
+</blockquote>
+<pre tabindex="0"><code>[main]
+dns=none
+</code></pre><blockquote>
+<p>kernel modules</p>
+</blockquote>
+<pre tabindex="0"><code>amdgpu
+nvidia
+nvidia_modeset
+nvidia_uvm
+nvidia_drm
+</code></pre><h2 id="distro-specific">distro specific<a hidden class="anchor" aria-hidden="true" href="#distro-specific">#</a></h2>
+<pre tabindex="0"><code class="language-list" data-lang="list">#local-mirror
+deb http://mirrors.ustc.edu.cn/debian trixie main contrib non-free non-free-firmware
+deb http://mirrors.ustc.edu.cn/debian trixie-updates main contrib non-free non-free-firmware
+
+#main-source/updates/backports
+deb https://deb.debian.org/debian/ trixie main contrib non-free non-free-firmware
+deb https://deb.debian.org/debian/ trixie-updates main contrib non-free non-free-firmware
+deb https://deb.debian.org/debian/ trixie-backports main contrib non-free non-free-firmware
+
+#security
+deb http://deb.debian.org/debian-security/ trixie-security main contrib non-free non-free-firmware
+</code></pre><h2 id="another-important-thing">Another important thing<a hidden class="anchor" aria-hidden="true" href="#another-important-thing">#</a></h2>
+<pre tabindex="0"><code>pacman -Qqe &gt; pkgs.txt
+flatpak list --columns=app &gt; flatpak.txt
+sudo apt list &gt; debs.txt
+brew list &gt; brew.txt
+</code></pre>
+
+  </div>
+
+  <footer class="post-footer">
+    <ul class="post-tags">
+      <li><a href="https://hydroakri.github.io/tags/linux/">Linux</a></li>
+    </ul>
+  </footer>
+</article>
+    </main>
+    
+<footer class="footer">
+    <span>&copy; 2024 <a href="https://hydroakri.github.io/">Hydroakri&#39;s Blog</a></span>
+    <span>
+        Powered by
+        <a href="https://gohugo.io/" rel="noopener noreferrer" target="_blank">Hugo</a> &
+        <a href="https://git.io/hugopapermod" rel="noopener" target="_blank">PaperMod</a>
+    </span>
+</footer>
+<a href="#top" aria-label="go to top" title="Go to Top (Alt + G)" class="top-link" id="top-link" accesskey="g">
+    <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 12 6" fill="currentColor">
+        <path d="M12 6H0l6-6z" />
+    </svg>
+</a>
+
+<script>
+    let menu = document.getElementById('menu')
+    if (menu) {
+        menu.scrollLeft = localStorage.getItem("menu-scroll-position");
+        menu.onscroll = function () {
+            localStorage.setItem("menu-scroll-position", menu.scrollLeft);
+        }
+    }
+
+    document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener("click", function (e) {
+            e.preventDefault();
+            var id = this.getAttribute("href").substr(1);
+            if (!window.matchMedia('(prefers-reduced-motion: reduce)').matches) {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView({
+                    behavior: "smooth"
+                });
+            } else {
+                document.querySelector(`[id='${decodeURIComponent(id)}']`).scrollIntoView();
+            }
+            if (id === "top") {
+                history.replaceState(null, null, " ");
+            } else {
+                history.pushState(null, null, `#${id}`);
+            }
+        });
+    });
+
+</script>
+<script>
+    var mybutton = document.getElementById("top-link");
+    window.onscroll = function () {
+        if (document.body.scrollTop > 800 || document.documentElement.scrollTop > 800) {
+            mybutton.style.visibility = "visible";
+            mybutton.style.opacity = "1";
+        } else {
+            mybutton.style.visibility = "hidden";
+            mybutton.style.opacity = "0";
+        }
+    };
+
+</script>
+<script>
+    document.getElementById("theme-toggle").addEventListener("click", () => {
+        if (document.body.className.includes("dark")) {
+            document.body.classList.remove('dark');
+            localStorage.setItem("pref-theme", 'light');
+        } else {
+            document.body.classList.add('dark');
+            localStorage.setItem("pref-theme", 'dark');
+        }
+    })
+
+</script>
+</body>
+
+</html>
