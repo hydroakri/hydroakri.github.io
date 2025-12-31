@@ -25,6 +25,10 @@ concurrency:
   group: "pages"
   cancel-in-progress: false
 
+# 如果Pages还没启用，可以先用这个简单的部署方式测试
+# env:
+#   GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+
 jobs:
   build:
     runs-on: ubuntu-latest
