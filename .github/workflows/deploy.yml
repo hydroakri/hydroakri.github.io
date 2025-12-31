@@ -4,9 +4,15 @@ on:
   push:
     branches:
       - main
+    paths-ignore:
+      - 'README.md'
+      - '.gitignore'
   pull_request:
     branches:
       - main
+    paths-ignore:
+      - 'README.md'
+      - '.gitignore'
 
 jobs:
   build:
@@ -20,9 +26,7 @@ jobs:
 
     - name: Install Zola
       run: |
-        wget -q -O - \
-        https://github.com/getzola/zola/releases/download/v0.21.0/zola-v0.21.0-x86_64-unknown-linux-gnu.tar.gz \
-        | tar xzf - -C /usr/local/bin
+        curl -L https://github.com/getzola/zola/releases/download/v0.21.0/zola-v0.21.0-x86_64-unknown-linux-gnu.tar.gz | tar xz -C /usr/local/bin
 
     - name: Build site
       run: zola build
