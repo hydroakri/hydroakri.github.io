@@ -1,6 +1,6 @@
 +++
-title = "Archive"
-template = "archives.html"
+title = "Archives"
+template = "pages.html"
 path = "archives"
-description = "archives"
+description = "Archives of all posts"
 +++

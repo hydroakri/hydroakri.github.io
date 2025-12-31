@@ -3,6 +3,9 @@ base_url = "https://hydroakri.github.io/"
 title = "Hydroakri's Blog"
 description = "与太阳共燃的内在性"
 
+# Enable the theme
+theme = "Linkita"
+
 # Whether to automatically compile all Sass files in the sass directory
 compile_sass = true
 
@@ -26,42 +29,60 @@ index_format = "elasticlunr_json"
 [extra]
 # Put all your custom variables here
 author = "Hydroakri"
-language_code = "zh-cn"
 
-# After Dark theme configuration
-after_dark_title = "Hydroakri's Blog"
-after_dark_menu = [
-    {url = "$BASE_URL", name = "Home"},
-    {url = "$BASE_URL/tags", name = "Tags"},
-    {url = "$BASE_URL/archives", name = "Archives"},
-    {url = "$BASE_URL/about", name = "About"},
+# Enable KaTeX math formula support globally
+math = false
+
+# Enable Mermaid support globally
+mermaid = false
+
+# Enable comments globally
+comment = false
+
+# Title separator
+title_separator = " | "
+
+# The top menu
+header_menu_name = "main"
+
+# Menu configuration
+[extra.menus]
+main = [
+  { url = "/", name = "Home" },
+  { url = "/tags", name = "Tags" },
+  { url = "/archives", name = "Archives" },
+  { url = "/about", name = "About" },
 ]
-
-# Nicer codeblocks with copy to clipboard
-codeblock = true
-
-# Enable MathJax support
-latex = true
-
-# Enable search bar
-enable_search = true
 
 # Social icons
-social = [
-    {name = "GitHub", url = "https://github.com/hydroakri", icon = "github"},
-    {name = "Last.fm", url = "https://www.last.fm/user/hydroakri", icon = "music"},
-    {name = "Steam", url = "https://steamcommunity.com/id/hydroakri", icon = "gamepad"},
-    {name = "QQ", url = "https://qm.qq.com/cgi-bin/qm/qr?k=lOkoiWANVJYuKaArCStQTFjjzfxpmc9V&noverify=0&personal_qrcode_source=3", icon = "message-circle"},
-    {name = "Twitter", url = "https://twitter.com/ihbswsy", icon = "twitter"},
-    {name = "Mastodon", url = "https://m.cmx.im/@hydroakri", icon = "users"},
-    {name = "Bilibili", url = "https://space.bilibili.com/4912217", icon = "video"},
-]
+[extra.social]
+github = { name = "GitHub", url = "https://github.com/hydroakri" }
+lastfm = { name = "Last.fm", url = "https://www.last.fm/user/hydroakri" }
+steam = { name = "Steam", url = "https://steamcommunity.com/id/hydroakri" }
+qq = { name = "QQ", url = "https://qm.qq.com/cgi-bin/qm/qr?k=lOkoiWANVJYuKaArCStQTFjjzfxpmc9V&noverify=0&personal_qrcode_source=3" }
+twitter = { name = "Twitter", url = "https://twitter.com/ihbswsy" }
+mastodon = { name = "Mastodon", url = "https://m.cmx.im/@hydroakri" }
+bilibili = { name = "Bilibili", url = "https://space.bilibili.com/4912217" }
 
 # Profile mode
-profile_enabled = true
-profile_title = ""
-profile_subtitle = "与太阳共燃的内在性"
-profile_image_url = "https://img2.doubanio.com/icon/ul265151065.jpg"
+[extra.profiles.hydroakri]
+avatar_url = "https://img2.doubanio.com/icon/ul265151065.jpg"
+avatar_alt = "Hydroakri's avatar"
+name = "Hydroakri"
+bio = "与太阳共燃的内在性"
+social = [
+    { name = "github", url = "https://github.com/hydroakri" },
+    { name = "mastodon", url = "https://m.cmx.im/@hydroakri" },
+    { name = "twitter", url = "https://twitter.com/ihbswsy" },
+    { name = "bilibili", url = "https://space.bilibili.com/4912217" },
+    { name = "steam", url = "https://steamcommunity.com/id/hydroakri" },
+]
 
 # Pagination
-pagination_pager_size = 5
+paginate_by = 5
+
+# Page info
+page_info = ["date", "word_count", "reading_time", "taxonomies"]
+
+# Page info on paginator
+page_info_on_paginator = ["date"]
