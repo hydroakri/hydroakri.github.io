@@ -1,9 +1,8 @@
----
-title: "draft"
-date: 2023-02-21T11:30:03+08:00
-author: "Me"
-draft: true
----
++++
+title = "draft"
+date = 2023-02-21T11:30:03+08:00
+draft = true
++++
 
 剧本
 一个（没）有人受伤的世界 爱情和政治的双重隐喻

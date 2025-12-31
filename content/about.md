@@ -1,7 +1,7 @@
----
-title: "About"
-# url: "/about"
----
++++
+title = "About"
+path = "about"
++++
 
 <div align="center">
 

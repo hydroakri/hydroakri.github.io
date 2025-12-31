@@ -1,9 +1,10 @@
----
-title: "在Debian+自定义内核上启用安全启动"
-date: 2024-09-02T21:48:27+08:00
-draft: false
-tags: ["linux"]
----
++++
+title = "在Debian+自定义内核上启用安全启动"
+date = 2024-09-02T21:48:27+08:00
+draft = false
+[taxonomies]
+tags = ["linux"]
++++
 
 ## 注意：
 

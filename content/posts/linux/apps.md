@@ -1,10 +1,12 @@
----
-title: "常用开源软件"
-date: 2023-02-22T11:11:27+08:00
-draft: false
-tags: ["linux"]
-ShowToc: true
----
++++
+title = "常用开源软件"
+date = 2023-02-22T11:11:27+08:00
+draft = false
+[taxonomies]
+tags = ["linux"]
+[extra]
+toc = true
++++
 
 > 我的电脑双硬盘双系统，使用Windows 11 + ArchLinux  
 > 在Windows上使用 scoop + winget / Archlinux 下使用 paru+pacman  

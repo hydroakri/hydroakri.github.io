@@ -1,9 +1,10 @@
----
-title: "Linux 优化"
-date: 2024-09-03T13:25:27+08:00
-draft: false
-tags: ["linux"]
----
++++
+title = "Linux 优化"
+date = 2024-09-03T13:25:27+08:00
+draft = false
+[taxonomies]
+tags = ["linux"]
++++
 
 > use ssh
 ```
@@ -161,7 +162,7 @@ nvidia_drm
 
 ## distro specific
 
-```list
+```text
 #local-mirror
 deb http://mirrors.ustc.edu.cn/debian trixie main contrib non-free non-free-firmware
 deb http://mirrors.ustc.edu.cn/debian trixie-updates main contrib non-free non-free-firmware

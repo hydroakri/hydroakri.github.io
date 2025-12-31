@@ -1,10 +1,10 @@
----
-title: "人都是悬崖上的旅者"
-date: 2022-12-21T11:30:03+08:00
-tags: ["poem"]
-author: "Me"
-draft: false
----
++++
+title = "人都是悬崖上的旅者"
+date = 2022-12-21T11:30:03+08:00
+draft = false
+[taxonomies]
+tags = ["poem"]
++++
 <div align="center">  
 <div style="display:flex;justify-content:center;margin-left:20px;">
 </div>

@@ -1,10 +1,12 @@
----
-title: "Archlinux安装小记"
-date: 2022-02-17T00:56:27+08:00
-draft: false
-tags: ["linux"]
-ShowToc: true
----
++++
+title = "Archlinux安装小记"
+date = 2022-02-17T00:56:27+08:00
+draft = false
+[taxonomies]
+tags = ["linux"]
+[extra]
+toc = true
++++
 
 # 创建安装介质
 工具：rufus  

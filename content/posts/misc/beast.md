@@ -1,9 +1,10 @@
----
-title: "在世界中心呼唤爱的野兽"
-date: 2023-02-21T17:00:27+08:00
-draft: false
-tags: ["转载"]
----
++++
+title = "在世界中心呼唤爱的野兽"
+date = 2023-02-21T17:00:27+08:00
+draft = false
+[taxonomies]
+tags = ["转载"]
++++
 
 #### The Beast that Shouted Love at the Heart of the World
 #### （美）埃里森 哈兰 1969

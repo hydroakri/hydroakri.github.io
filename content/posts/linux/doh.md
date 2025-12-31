@@ -1,9 +1,10 @@
----
-title: "linux 使用 doh"
-date: 2023-08-09T17:26:27+08:00
-draft: false
-tags: ["linux"]
----
++++
+title = "linux 使用 doh"
+date = 2023-08-09T17:26:27+08:00
+draft = false
+[taxonomies]
+tags = ["linux"]
++++
 
 在比较了[archwiki](https://wiki.archlinux.org/title/Domain_name_resolution)关于dns的介绍后  
 在smartdns/coredns/unbound/dnsencrypt-proxy之中选择了后者  
@@ -24,7 +25,7 @@ coredns和unbound对于桌面linux用户而言过于复杂且不好配置
 
 3. 让dns服务器指向本地的dnscrypt-proxy
 修改`/etc/resolv.conf`
-```/etc/resolv.conf
+```text
 nameserver ::1
 nameserver 127.0.0.1
 options edns0

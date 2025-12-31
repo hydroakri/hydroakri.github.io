@@ -1,6 +1,6 @@
----
-title: "Archive"
-layout: "archives"
-# url: "/about"
-summary: "archives"
----
++++
+title = "Archive"
+template = "archives.html"
+path = "archives"
+description = "archives"
++++

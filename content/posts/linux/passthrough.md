@@ -1,9 +1,10 @@
----
-title: "基于KVM的虚拟显卡透传技术"
-date: 2023-08-02T21:48:27+08:00
-draft: false
-tags: ["linux"]
----
++++
+title = "基于KVM的虚拟显卡透传技术"
+date = 2023-08-02T21:48:27+08:00
+draft = false
+[taxonomies]
+tags = ["linux"]
++++
 
 # 0.准备工作&检查
 显卡直通的前提条件是：  
