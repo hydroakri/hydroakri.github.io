@@ -1,6 +1,6 @@
 +++
 title = "二〇年代的不可居性：从EVA终到你好夏洛特的主体失效史"
-date = 20236-01-01T03:22:50
+date = 2026-01-01T03:22:50
 draft = false
 [taxonomies]
 tags = ["queer", "feminism", "cultural research", "hello charlotte", "EVA"]
