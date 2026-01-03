@@ -7,6 +7,10 @@ tags = ["queer", "feminism", "cultural research", "hello charlotte", "EVA"]
 categories = ["humanities"]
 +++
 
+作者：水棱  
+本文采用： [CC BY-NC-ND 4.0](https://creativecommons.org/licenses/by-nc-nd/4.0/deed.zh-hans) 许可协议  
+版权声明：文字部分为原创，笔者不拥有文中图片、剧照版权。
+
 > Both loved and hated by you, 
 > 
 > At last, me could meet.
